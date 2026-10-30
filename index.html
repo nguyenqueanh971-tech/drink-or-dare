@@ -280,92 +280,131 @@ const rawCards = [
 ["rule","⚡","Mỗi người nói một điều mình thích ở buổi tiệc hôm nay.","Everyone shares one thing they like about tonight."]
 ];
 
-const labels={
- truth:"💬 TRUTH · SỰ THẬT",
- dare:"🔥 DARE · THỬ THÁCH",
- expose:"👀 EXPOSE · BÓC PHỐT",
- act:"🎭 ACT IT OUT · DIỄN XUẤT",
- tongue:"👅 TONGUE TWISTER · XOẮN LƯỠI",
- rule:"⚡ WILD RULE · LUẬT ĐẶC BIỆT"
-};
-const classes={
- truth:"card-truth",dare:"card-dare",expose:"card-expose",
- act:"card-act",tongue:"card-tongue",rule:"card-rule"
+
+const labels = {
+  truth: "💬 TRUTH · SỰ THẬT",
+  dare: "🔥 DARE · THỬ THÁCH",
+  expose: "👀 EXPOSE · BÓC PHỐT",
+  act: "🎭 ACT IT OUT · DIỄN XUẤT",
+  tongue: "👅 TONGUE TWISTER · XOẮN LƯỠI",
+  rule: "⚡ WILD RULE · LUẬT ĐẶC BIỆT"
 };
 
-let cards=[];
-let deck=[];
-let played=0;
-let current=null;
+const classes = {
+  truth: "card-truth",
+  dare: "card-dare",
+  expose: "card-expose",
+  act: "card-act",
+  tongue: "card-tongue",
+  rule: "card-rule"
+};
 
-function shuffle(array){
-  const a=[...array];
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
+// Convert the original card arrays into objects
+const cards = rawCards.map((c, i) => ({
+  id: i,
+  type: c[0],
+  emoji: c[1],
+  vi: c[2],
+  en: c[3]
+}));
+
+let deck = [];
+let played = 0;
+let current = null;
+
+function shuffle(array) {
+  const result = [...array];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
   }
-  return a;
+
+  return result;
 }
-function updateStats(){
-  document.getElementById("remaining").textContent=deck.length;
-  document.getElementById("played").textContent=played;
+
+function updateStats() {
+  document.getElementById("remaining").textContent = deck.length;
+  document.getElementById("played").textContent = played;
 }
-function newDeck(){
-  deck=shuffle(cards);
-  played=0;
-  current=null;
+
+function newDeck() {
+  deck = shuffle(cards);
+  played = 0;
+  current = null;
+
+  document.getElementById("category").textContent = "READY TO PLAY?";
+  document.getElementById("emoji").textContent = "🎁";
+  document.getElementById("question").textContent = "Sẵn sàng chưa?";
+  document.getElementById("english").textContent = "Ready to have some fun?";
+  document.getElementById("cardNumber").textContent =
+    "RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
+
+  document.getElementById("card").className = "game-card card-back";
+  document.getElementById("toast").textContent = "✨ Bộ bài mới đã được xáo!";
+
   updateStats();
-  document.getElementById("category").textContent="READY TO PLAY?";
-  document.getElementById("emoji").textContent="🎁";
-  document.getElementById("question").textContent="Sẵn sàng chưa?";
-  document.getElementById("english").textContent="Ready to have some fun?";
-  document.getElementById("cardNumber").textContent="RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
-  document.getElementById("card").className="game-card card-back";
-  document.getElementById("toast").textContent="✨ Bộ bài mới đã được xáo!";
 }
-function drawCard(){
-  if(deck.length===0){
-    document.getElementById("toast").textContent="🎉 Đã hết bài! Hãy xáo bộ bài mới nhé!";
+
+function drawCard() {
+  if (deck.length === 0) {
+    document.getElementById("toast").textContent =
+      "🎉 Đã hết bài! Hãy xáo bộ bài mới nhé!";
     return;
   }
-  current=deck.pop();
+
+  current = deck.pop();
   played++;
+
   showCard();
 }
 
-function showCard(){
+function showCard() {
+  if (!current) return;
+
   const card = document.getElementById("card");
 
   card.className = "game-card";
   void card.offsetWidth;
-  card.classList.add("flip", classes[current.type]);
 
-  document.getElementById("category").textContent = labels[current.type];
+  card.classList.add("flip", classes[current.type] || "card-back");
+
+  document.getElementById("category").textContent =
+    labels[current.type] || "PARTY CARD";
+
   document.getElementById("emoji").textContent = current.emoji;
   document.getElementById("question").textContent = current.vi;
   document.getElementById("english").textContent = current.en;
   document.getElementById("cardNumber").textContent = "CARD #" + played;
 
-  document.getElementById("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
+  document.getElementById("toast").textContent =
+    "Cả nhóm cùng chơi nào! 💖";
 
   updateStats();
 }
 
-function nextCard(){
+function nextCard() {
   drawCard();
 }
-function skipCard(){
-  if(!current){
-    document.getElementById("toast").textContent="Hãy rút một lá bài trước nhé!";
+
+function skipCard() {
+  if (!current) {
+    document.getElementById("toast").textContent =
+      "Hãy rút một lá bài trước nhé!";
     return;
   }
-  document.getElementById("toast").textContent="Đã bỏ qua lá bài này ⏭️";
+
   drawCard();
 }
 
-cards=rawCards.map((c,i)=>({id:i,type:c[0],emoji:c[1],vi:c[2],en:c[3]}));
+// Make functions available to the HTML buttons
+window.drawCard = drawCard;
+window.nextCard = nextCard;
+window.skipCard = skipCard;
+window.newDeck = newDeck;
 
+// Start the game
 newDeck();
-</script>
+
 </body>
 </html>
