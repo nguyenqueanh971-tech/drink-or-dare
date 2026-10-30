@@ -308,6 +308,7 @@ const cards = rawCards.map((c, i) => ({
   en: c[3]
 }));
 
+
 let deck = [];
 let played = 0;
 let current = null;
@@ -323,9 +324,13 @@ function shuffle(array) {
   return result;
 }
 
+function getElement(id) {
+  return document.getElementById(id);
+}
+
 function updateStats() {
-  document.getElementById("remaining").textContent = deck.length;
-  document.getElementById("played").textContent = played;
+  getElement("remaining").textContent = deck.length;
+  getElement("played").textContent = played;
 }
 
 function newDeck() {
@@ -333,52 +338,47 @@ function newDeck() {
   played = 0;
   current = null;
 
-  document.getElementById("category").textContent = "READY TO PLAY?";
-  document.getElementById("emoji").textContent = "🎁";
-  document.getElementById("question").textContent = "Sẵn sàng chưa?";
-  document.getElementById("english").textContent = "Ready to have some fun?";
-  document.getElementById("cardNumber").textContent =
+  getElement("category").textContent = "READY TO PLAY?";
+  getElement("emoji").textContent = "🎁";
+  getElement("question").textContent = "Sẵn sàng chưa?";
+  getElement("english").textContent = "Ready to have some fun?";
+  getElement("cardNumber").textContent =
     "RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
 
-  document.getElementById("card").className = "game-card card-back";
-  document.getElementById("toast").textContent = "✨ Bộ bài mới đã được xáo!";
+  getElement("card").className = "game-card card-back";
+  getElement("toast").textContent = "✨ Bộ bài mới đã được xáo!";
 
   updateStats();
 }
 
 function drawCard() {
-  if (deck.length === 0) {
-    document.getElementById("toast").textContent =
+  if (!deck.length) {
+    getElement("toast").textContent =
       "🎉 Đã hết bài! Hãy xáo bộ bài mới nhé!";
     return;
   }
 
   current = deck.pop();
   played++;
-
   showCard();
 }
 
 function showCard() {
   if (!current) return;
 
-  const card = document.getElementById("card");
+  const card = getElement("card");
 
   card.className = "game-card";
   void card.offsetWidth;
-
   card.classList.add("flip", classes[current.type] || "card-back");
 
-  document.getElementById("category").textContent =
+  getElement("category").textContent =
     labels[current.type] || "PARTY CARD";
-
-  document.getElementById("emoji").textContent = current.emoji;
-  document.getElementById("question").textContent = current.vi;
-  document.getElementById("english").textContent = current.en;
-  document.getElementById("cardNumber").textContent = "CARD #" + played;
-
-  document.getElementById("toast").textContent =
-    "Cả nhóm cùng chơi nào! 💖";
+  getElement("emoji").textContent = current.emoji;
+  getElement("question").textContent = current.vi;
+  getElement("english").textContent = current.en;
+  getElement("cardNumber").textContent = "CARD #" + played;
+  getElement("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
 
   updateStats();
 }
@@ -389,7 +389,7 @@ function nextCard() {
 
 function skipCard() {
   if (!current) {
-    document.getElementById("toast").textContent =
+    getElement("toast").textContent =
       "Hãy rút một lá bài trước nhé!";
     return;
   }
@@ -397,14 +397,38 @@ function skipCard() {
   drawCard();
 }
 
-// Make functions available to the HTML buttons
-window.drawCard = drawCard;
-window.nextCard = nextCard;
-window.skipCard = skipCard;
-window.newDeck = newDeck;
+function startGame() {
+  const required = [
+    "remaining", "played", "category", "emoji",
+    "question", "english", "cardNumber", "card", "toast"
+  ];
 
-// Start the game
-newDeck();
+  const missing = required.filter(id => !getElement(id));
+
+  if (missing.length) {
+    console.error("Missing HTML elements:", missing);
+    return;
+  }
+
+  newDeck();
+
+  document.querySelector(".draw")?.addEventListener("click", drawCard);
+  document.querySelector(".next")?.addEventListener("click", nextCard);
+  document.querySelector(".skip")?.addEventListener("click", skipCard);
+  document.querySelector(".shuffle")?.addEventListener("click", newDeck);
+
+  window.drawCard = drawCard;
+  window.nextCard = nextCard;
+  window.skipCard = skipCard;
+  window.newDeck = newDeck;
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startGame);
+} else {
+  startGame();
+}
+
 
 </body>
 </html>
