@@ -3,8 +3,10 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#542b8d">
 <title>DRINK OR DARE 🎉</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 
@@ -13,125 +15,316 @@
   --purple:#8857ff;
   --blue:#48c8ff;
   --yellow:#ffe66d;
-  --dark:#21133e;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
   font-family:'Baloo 2',sans-serif;
-  color:white;text-align:center;
+  color:white;
+  text-align:center;
   background:linear-gradient(145deg,#24113f,#542b8d 55%,#182e65);
   overflow-x:hidden;
 }
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
   background-image:radial-gradient(#ffffff35 1.5px,transparent 1.5px);
-  background-size:28px 28px;opacity:.45;
+  background-size:28px 28px;
 }
-main{position:relative;max-width:680px;margin:auto;padding:25px 18px 45px}
-.topline{font-size:13px;letter-spacing:3px;font-weight:800;color:#ffe66d}
-h1{
-  font-size:clamp(42px,10vw,70px);line-height:1;
-  margin:10px 0 0;font-weight:800;
-  color:#fff;text-shadow:4px 5px 0 #ff4fa3;
+
+main {
+  position:relative;
+  width:100%;
+  max-width:680px;
+  margin:auto;
+  padding:25px 16px 40px;
 }
-.subtitle{font-size:18px;color:#e8d9ff;margin:12px 0 20px}
-.stickers{font-size:36px;margin:12px}
-.pill{
-  display:inline-block;padding:8px 18px;border-radius:30px;
-  background:#ffffff20;border:1px solid #ffffff40;
-  font-size:14px;font-weight:700;
+
+.topline {
+  font-size:13px;
+  letter-spacing:2px;
+  font-weight:800;
+  color:var(--yellow);
 }
-.stats{display:flex;justify-content:center;gap:10px;margin:18px 0}
-.stat{
-  background:#ffffff18;border:1px solid #ffffff30;
-  border-radius:15px;padding:8px 18px;min-width:110px
+
+h1 {
+  font-size:clamp(45px,11vw,72px);
+  line-height:.95;
+  margin:12px 0;
+  font-weight:800;
+  text-shadow:4px 5px 0 var(--pink);
 }
-.stat strong{display:block;font-size:22px;color:var(--yellow)}
-.stat span{font-size:12px;color:#e9ddff}
-.card-wrap{perspective:1000px;margin:25px auto;max-width:440px}
-.game-card{
-  min-height:320px;border-radius:28px;padding:25px 23px;
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;position:relative;overflow:hidden;
-  border:4px solid #fff;box-shadow:0 12px 0 #160d35,0 20px 45px #0005;
-  background:linear-gradient(145deg,#ff63b2,#9c60ff);
-  transition:transform .3s;
+
+.subtitle {
+  font-size:18px;
+  color:#e8d9ff;
+  margin:12px 0;
 }
-.game-card.flip{animation:flip .5s ease}
-@keyframes flip{
-  0%{transform:rotateY(0) scale(1)}
-  50%{transform:rotateY(90deg) scale(.9)}
-  100%{transform:rotateY(0) scale(1)}
+
+.stickers {
+  font-size:35px;
+  margin:12px;
 }
-.game-card:before{
-  content:"";position:absolute;width:220px;height:220px;
-  border:25px solid #ffffff20;border-radius:50%;
-  top:-120px;right:-90px
+
+.pill {
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  background:#ffffff20;
+  border:1px solid #ffffff40;
+  font-size:14px;
+  font-weight:700;
 }
-.category{
-  padding:7px 17px;border-radius:30px;background:#ffffff30;
-  border:1px solid #ffffff70;font-size:14px;font-weight:800;
-  letter-spacing:1px;position:relative
+
+.stats {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:20px 0;
 }
-.card-emoji{font-size:65px;margin:12px 0 5px;position:relative}
-.question{
-  font-size:clamp(22px,5vw,29px);font-weight:800;
-  line-height:1.35;position:relative;max-width:370px
+
+.stat {
+  background:#ffffff18;
+  border:1px solid #ffffff30;
+  border-radius:15px;
+  padding:8px 20px;
+  min-width:115px;
 }
-.english{font-size:16px;color:#fff0fb;margin-top:12px;line-height:1.4}
-.card-number{font-size:12px;margin-top:18px;opacity:.8}
-.card-back{background:linear-gradient(145deg,#48c8ff,#8857ff)}
-.card-truth{background:linear-gradient(145deg,#ff69ad,#ff925e)}
-.card-dare{background:linear-gradient(145deg,#8857ff,#4b83ff)}
-.card-expose{background:linear-gradient(145deg,#ffae42,#ff5e75)}
-.card-act{background:linear-gradient(145deg,#35c9bd,#418bff)}
-.card-tongue{background:linear-gradient(145deg,#ff69a9,#9b65ff)}
-.card-rule{background:linear-gradient(145deg,#ffc84a,#ff6e73)}
-.buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px;margin:20px auto}
-button{
-  font-family:inherit;border:0;border-radius:17px;padding:14px 12px;
-  font-size:18px;font-weight:800;cursor:pointer;
+
+.stat strong {
+  display:block;
+  font-size:24px;
+  color:var(--yellow);
+}
+
+.stat span {
+  font-size:12px;
+  color:#e9ddff;
+}
+
+.card-wrap {
+  perspective:1000px;
+  margin:25px auto;
+  max-width:440px;
+}
+
+.game-card {
+  min-height:330px;
+  border-radius:28px;
+  padding:25px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  border:4px solid white;
+  box-shadow:0 12px 0 #160d35,0 20px 45px #0005;
+  background:linear-gradient(145deg,#48c8ff,#8857ff);
+  transition:background .3s;
+}
+
+.game-card::before {
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:25px solid #ffffff20;
+  border-radius:50%;
+  top:-120px;
+  right:-90px;
+  pointer-events:none;
+}
+
+.game-card.flip {
+  animation:flip .45s ease;
+}
+
+@keyframes flip {
+  0% { transform:rotateY(0) scale(1); }
+  50% { transform:rotateY(90deg) scale(.9); }
+  100% { transform:rotateY(0) scale(1); }
+}
+
+.category {
+  padding:7px 17px;
+  border-radius:30px;
+  background:#ffffff30;
+  border:1px solid #ffffff70;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:1px;
+  position:relative;
+}
+
+.card-emoji {
+  font-size:65px;
+  margin:12px 0 5px;
+  position:relative;
+}
+
+.question {
+  font-size:clamp(22px,5vw,29px);
+  font-weight:800;
+  line-height:1.35;
+  position:relative;
+  max-width:370px;
+  overflow-wrap:anywhere;
+}
+
+.english {
+  font-size:16px;
+  color:#fff0fb;
+  margin-top:12px;
+  line-height:1.4;
+  position:relative;
+}
+
+.card-number {
+  font-size:12px;
+  margin-top:18px;
+  opacity:.85;
+  position:relative;
+}
+
+.card-back { background:linear-gradient(145deg,#48c8ff,#8857ff); }
+.card-truth { background:linear-gradient(145deg,#ff69ad,#ff925e); }
+.card-dare { background:linear-gradient(145deg,#8857ff,#4b83ff); }
+.card-expose { background:linear-gradient(145deg,#ffae42,#ff5e75); }
+.card-act { background:linear-gradient(145deg,#35c9bd,#418bff); }
+.card-tongue { background:linear-gradient(145deg,#ff69a9,#9b65ff); }
+.card-rule { background:linear-gradient(145deg,#ffc84a,#ff6e73); }
+
+.buttons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  max-width:440px;
+  margin:20px auto;
+}
+
+button {
+  font-family:inherit;
+  border:0;
+  border-radius:17px;
+  padding:14px 10px;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
   transition:transform .15s,filter .15s;
 }
-button:active{transform:scale(.95)}
-.draw{
-  grid-column:1/-1;background:var(--yellow);color:#39204e;
-  font-size:23px;box-shadow:0 6px 0 #c69b36
+
+button:active {
+  transform:scale(.96);
+  filter:brightness(.92);
 }
-.next{background:#48c8ff;color:#172b52;box-shadow:0 5px 0 #238bb8}
-.skip{background:#ff72b4;color:#4b1740;box-shadow:0 5px 0 #c53e83}
-.shuffle{background:#fff;color:#58348e;box-shadow:0 5px 0 #c9b9e7}
-.hint{font-size:14px;color:#e5d8ff;margin:12px auto;max-width:440px}
-.categories{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-  margin:24px auto 15px
+
+button:focus-visible {
+  outline:3px solid white;
+  outline-offset:4px;
 }
-.cat{
-  border:1px solid #ffffff35;border-radius:30px;
-  background:#ffffff13;padding:6px 12px;font-size:13px
+
+.draw {
+  grid-column:1/-1;
+  background:var(--yellow);
+  color:#39204e;
+  font-size:22px;
+  box-shadow:0 6px 0 #c69b36;
 }
-.footer{font-size:12px;color:#cdbce8;margin-top:25px}
-.toast{min-height:25px;color:#ffe66d;font-weight:700}
-@media(max-width:420px){
-  main{padding:20px 13px 35px}
-  .game-card{min-height:300px;padding:20px 16px}
-  .stats{gap:6px}.stat{min-width:90px;padding:7px 10px}
-  button{font-size:16px}
+
+.next {
+  background:var(--blue);
+  color:#172b52;
+  box-shadow:0 5px 0 #238bb8;
+}
+
+.skip {
+  background:#ff72b4;
+  color:#4b1740;
+  box-shadow:0 5px 0 #c53e83;
+}
+
+.shuffle {
+  grid-column:1/-1;
+  background:white;
+  color:#58348e;
+  box-shadow:0 5px 0 #c9b9e7;
+}
+
+.toast {
+  min-height:28px;
+  color:var(--yellow);
+  font-weight:700;
+  font-size:15px;
+  margin:10px auto;
+}
+
+.categories {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:24px auto 15px;
+}
+
+.cat {
+  border:1px solid #ffffff35;
+  border-radius:30px;
+  background:#ffffff13;
+  padding:6px 12px;
+  font-size:13px;
+}
+
+.hint {
+  font-size:14px;
+  color:#e5d8ff;
+  margin:18px auto;
+  max-width:440px;
+  line-height:1.6;
+}
+
+.footer {
+  font-size:12px;
+  color:#cdbce8;
+  margin-top:25px;
+}
+
+@media(max-width:420px) {
+  main { padding:20px 13px 35px; }
+  .game-card { min-height:300px; padding:20px 15px; }
+  .stats { gap:7px; }
+  .stat { min-width:95px; padding:7px 10px; }
+  button { font-size:15px; }
+  .draw { font-size:20px; }
 }
 </style>
 </head>
+
 <body>
 <main>
   <div class="topline">🎉 THE ULTIMATE PARTY CARD GAME 🎉</div>
   <h1>DRINK<br>OR DARE</h1>
   <div class="subtitle">Một điện thoại · Cả nhóm cùng chơi!</div>
   <div class="stickers">🍻 😈 💖 🎲</div>
-  <div class="pill">🇻🇳 TIẾNG VIỆT &nbsp;·&nbsp; 🇬🇧 ENGLISH</div>
+  <div class="pill">🇻🇳 TIẾNG VIỆT · 🇬🇧 ENGLISH</div>
 
   <div class="stats">
-    <div class="stat"><strong id="remaining">100+</strong><span>CARDS LEFT</span></div>
-    <div class="stat"><strong id="played">0</strong><span>CARDS PLAYED</span></div>
+    <div class="stat">
+      <strong id="remaining">102</strong>
+      <span>CARDS LEFT</span>
+    </div>
+    <div class="stat">
+      <strong id="played">0</strong>
+      <span>CARDS PLAYED</span>
+    </div>
   </div>
 
   <div class="card-wrap">
@@ -140,17 +333,21 @@ button:active{transform:scale(.95)}
       <div class="card-emoji" id="emoji">🎁</div>
       <div class="question" id="question">Sẵn sàng chưa?</div>
       <div class="english" id="english">Ready to have some fun?</div>
-      <div class="card-number" id="cardNumber">RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD</div>
+      <div class="card-number" id="cardNumber">
+        RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD
+      </div>
     </div>
   </div>
 
-  <div class="toast" id="toast">Cả nhóm ngồi lại và bắt đầu thôi! 💗</div>
+  <div class="toast" id="toast">
+    Cả nhóm ngồi lại và bắt đầu thôi! 💗
+  </div>
 
   <div class="buttons">
-    <button class="draw" onclick="drawCard()">🎴 RÚT BÀI · DRAW CARD</button>
-    <button class="next" onclick="nextCard()">➡️ BÀI TIẾP · NEXT</button>
-    <button class="skip" onclick="skipCard()">⏭️ BỎ QUA · SKIP</button>
-    <button class="shuffle" onclick="newDeck()">🔀 XÁO BÀI MỚI</button>
+    <button class="draw" id="drawBtn">🎴 RÚT BÀI · DRAW CARD</button>
+    <button class="next" id="nextBtn">➡️ BÀI TIẾP · NEXT</button>
+    <button class="skip" id="skipBtn">⏭️ BỎ QUA · SKIP</button>
+    <button class="shuffle" id="shuffleBtn">🔀 XÁO BÀI MỚI</button>
   </div>
 
   <div class="categories">
@@ -163,13 +360,23 @@ button:active{transform:scale(.95)}
   </div>
 
   <div class="hint">
-    📱 Chuyền điện thoại cho nhau hoặc để một người rút bài cho cả nhóm.
-    <br>Không muốn uống? Chọn nước lọc, nước ngọt hoặc bỏ qua nhé!
+    📱 Một người giữ điện thoại và rút bài cho cả nhóm cùng chơi.
+    <br>
+    Không muốn uống? Chọn nước lọc, nước ngọt hoặc bỏ qua nhé!
   </div>
-  <div class="footer">MADE FOR FRIENDS, LAUGHTER & CHAOTIC MEMORIES 💜</div>
+
+  <div class="footer">
+    MADE FOR FRIENDS, LAUGHTER & CHAOTIC MEMORIES 💜
+  </div>
 </main>
 
 <script>
+"use strict";
+
+/* =========================
+   CARD DATABASE: 102 CARDS
+========================= */
+
 const rawCards = [
 ["truth","💬","Bạn đã từng nói dối để trốn một buổi hẹn chưa?","Have you ever lied to get out of a date?"],
 ["truth","💬","Ai trong nhóm hiểu bạn nhất?","Who in this group understands you best?"],
@@ -264,7 +471,7 @@ const rawCards = [
 ["tongue","👅","Nói nhanh 3 lần: Chú chuột chui qua chiếc chum.","Say 3 times fast: Four fine fresh fish for you."],
 
 ["rule","⚡","Từ giờ đến lượt tiếp theo, ai cười phải giơ hai tay.","Until your next turn, raise both hands whenever you laugh."],
-["rule","⚡","Cả nhóm cùng nói 'CHEERS!' trước khi rút lá tiếp theo.","Everyone must say 'CHEERS!' before the next card."],
+["rule","⚡","Cả nhóm cùng nói CHEERS trước khi rút lá tiếp theo.","Everyone must say CHEERS before the next card."],
 ["rule","⚡","Trong 2 lượt tới, không ai được gọi tên nhau.","For the next 2 rounds, nobody can say anyone's name."],
 ["rule","⚡","Mọi người phải tạo dáng trái tim trong ảnh tiếp theo.","Everyone must make a heart pose in the next photo."],
 ["rule","⚡","Cả nhóm cùng chọn một bài hát và hát 10 giây.","Choose a song and sing together for 10 seconds."],
@@ -280,57 +487,56 @@ const rawCards = [
 ["rule","⚡","Mỗi người nói một điều mình thích ở buổi tiệc hôm nay.","Everyone shares one thing they like about tonight."]
 ];
 
+/* =========================
+   GAME LOGIC
+========================= */
 
 const labels = {
-  truth: "💬 TRUTH · SỰ THẬT",
-  dare: "🔥 DARE · THỬ THÁCH",
-  expose: "👀 EXPOSE · BÓC PHỐT",
-  act: "🎭 ACT IT OUT · DIỄN XUẤT",
-  tongue: "👅 TONGUE TWISTER · XOẮN LƯỠI",
-  rule: "⚡ WILD RULE · LUẬT ĐẶC BIỆT"
+  truth:"💬 TRUTH · SỰ THẬT",
+  dare:"🔥 DARE · THỬ THÁCH",
+  expose:"👀 EXPOSE · BÓC PHỐT",
+  act:"🎭 ACT IT OUT · DIỄN XUẤT",
+  tongue:"👅 TONGUE TWISTER · XOẮN LƯỠI",
+  rule:"⚡ WILD RULE · LUẬT ĐẶC BIỆT"
 };
 
 const classes = {
-  truth: "card-truth",
-  dare: "card-dare",
-  expose: "card-expose",
-  act: "card-act",
-  tongue: "card-tongue",
-  rule: "card-rule"
+  truth:"card-truth",
+  dare:"card-dare",
+  expose:"card-expose",
+  act:"card-act",
+  tongue:"card-tongue",
+  rule:"card-rule"
 };
 
-// Convert the original card arrays into objects
-const cards = rawCards.map((c, i) => ({
-  id: i,
-  type: c[0],
-  emoji: c[1],
-  vi: c[2],
-  en: c[3]
+const cards = rawCards.map((c,index) => ({
+  id:index,
+  type:c[0],
+  emoji:c[1],
+  vi:c[2],
+  en:c[3]
 }));
-
 
 let deck = [];
 let played = 0;
 let current = null;
 
+const $ = id => document.getElementById(id);
+
 function shuffle(array) {
   const result = [...array];
 
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
+  for (let i=result.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [result[i],result[j]] = [result[j],result[i]];
   }
 
   return result;
 }
 
-function getElement(id) {
-  return document.getElementById(id);
-}
-
 function updateStats() {
-  getElement("remaining").textContent = deck.length;
-  getElement("played").textContent = played;
+  $("remaining").textContent = deck.length;
+  $("played").textContent = played;
 }
 
 function newDeck() {
@@ -338,23 +544,21 @@ function newDeck() {
   played = 0;
   current = null;
 
-  getElement("category").textContent = "READY TO PLAY?";
-  getElement("emoji").textContent = "🎁";
-  getElement("question").textContent = "Sẵn sàng chưa?";
-  getElement("english").textContent = "Ready to have some fun?";
-  getElement("cardNumber").textContent =
-    "RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
+  $("category").textContent = "READY TO PLAY?";
+  $("emoji").textContent = "🎁";
+  $("question").textContent = "Sẵn sàng chưa?";
+  $("english").textContent = "Ready to have some fun?";
+  $("cardNumber").textContent = "RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
 
-  getElement("card").className = "game-card card-back";
-  getElement("toast").textContent = "✨ Bộ bài mới đã được xáo!";
+  $("card").className = "game-card card-back";
+  $("toast").textContent = "✨ Bộ bài mới đã được xáo!";
 
   updateStats();
 }
 
 function drawCard() {
-  if (!deck.length) {
-    getElement("toast").textContent =
-      "🎉 Đã hết bài! Hãy xáo bộ bài mới nhé!";
+  if (deck.length === 0) {
+    $("toast").textContent = "🎉 Hết bài rồi! Hãy xáo bộ bài mới nhé!";
     return;
   }
 
@@ -366,68 +570,69 @@ function drawCard() {
 function showCard() {
   if (!current) return;
 
-  const card = getElement("card");
+  const card = $("card");
 
   card.className = "game-card";
   void card.offsetWidth;
-  card.classList.add("flip", classes[current.type] || "card-back");
+  card.classList.add("flip",classes[current.type] || "card-back");
 
-  getElement("category").textContent =
-    labels[current.type] || "PARTY CARD";
-  getElement("emoji").textContent = current.emoji;
-  getElement("question").textContent = current.vi;
-  getElement("english").textContent = current.en;
-  getElement("cardNumber").textContent = "CARD #" + played;
-  getElement("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
+  $("category").textContent = labels[current.type] || "PARTY CARD";
+  $("emoji").textContent = current.emoji;
+  $("question").textContent = current.vi;
+  $("english").textContent = current.en;
+  $("cardNumber").textContent = "CARD #" + played;
+  $("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
 
   updateStats();
 }
 
 function nextCard() {
+  if (!current) {
+    $("toast").textContent = "🎴 Hãy rút lá bài đầu tiên nhé!";
+    return;
+  }
+
   drawCard();
 }
 
 function skipCard() {
   if (!current) {
-    getElement("toast").textContent =
-      "Hãy rút một lá bài trước nhé!";
+    $("toast").textContent = "Hãy rút một lá bài trước nhé!";
     return;
   }
 
   drawCard();
 }
 
+/* =========================
+   INITIALIZE
+========================= */
+
 function startGame() {
   const required = [
-    "remaining", "played", "category", "emoji",
-    "question", "english", "cardNumber", "card", "toast"
+    "remaining","played","category","emoji",
+    "question","english","cardNumber","card","toast",
+    "drawBtn","nextBtn","skipBtn","shuffleBtn"
   ];
 
-  const missing = required.filter(id => !getElement(id));
+  const missing = required.filter(id => !$(id));
 
   if (missing.length) {
-    console.error("Missing HTML elements:", missing);
+    console.error("Game initialization failed. Missing:",missing);
     return;
   }
 
+  $("drawBtn").addEventListener("click",drawCard);
+  $("nextBtn").addEventListener("click",nextCard);
+  $("skipBtn").addEventListener("click",skipCard);
+  $("shuffleBtn").addEventListener("click",newDeck);
+
   newDeck();
 
-  document.querySelector(".draw")?.addEventListener("click", drawCard);
-  document.querySelector(".next")?.addEventListener("click", nextCard);
-  document.querySelector(".skip")?.addEventListener("click", skipCard);
-  document.querySelector(".shuffle")?.addEventListener("click", newDeck);
-
-  window.drawCard = drawCard;
-  window.nextCard = nextCard;
-  window.skipCard = skipCard;
-  window.newDeck = newDeck;
+  console.log("DRINK OR DARE ready:",cards.length,"cards");
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", startGame);
-} else {
-  startGame();
-}
+startGame();
 </script>
 </body>
 </html>
