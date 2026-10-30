@@ -3,633 +3,431 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#542b8d">
-<title>DRINK OR DARE 🎉</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRINK OR DARE 🎴</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
-
 :root {
   --pink:#ff4fa3;
-  --purple:#8857ff;
-  --blue:#48c8ff;
+  --purple:#8b5cf6;
+  --blue:#45c8ff;
   --yellow:#ffe66d;
+  --dark:#211535;
 }
-
-* { box-sizing:border-box; }
-
+* {box-sizing:border-box}
 body {
   margin:0;
   min-height:100vh;
-  font-family:'Baloo 2',sans-serif;
+  font-family:Arial,sans-serif;
   color:white;
+  background:linear-gradient(135deg,#241044,#54227e,#142c61);
   text-align:center;
-  background:linear-gradient(145deg,#24113f,#542b8d 55%,#182e65);
-  overflow-x:hidden;
+  padding:22px 14px 40px;
 }
-
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:radial-gradient(#ffffff35 1.5px,transparent 1.5px);
-  background-size:28px 28px;
-}
-
-main {
-  position:relative;
-  width:100%;
-  max-width:680px;
-  margin:auto;
-  padding:25px 16px 40px;
-}
-
-.topline {
-  font-size:13px;
-  letter-spacing:2px;
-  font-weight:800;
-  color:var(--yellow);
-}
-
+.container {max-width:650px;margin:auto}
 h1 {
-  font-size:clamp(45px,11vw,72px);
-  line-height:.95;
-  margin:12px 0;
-  font-weight:800;
-  text-shadow:4px 5px 0 var(--pink);
+  font-size:clamp(35px,8vw,58px);
+  margin:15px 0 5px;
+  font-weight:1000;
+  letter-spacing:2px;
+  color:var(--yellow);
+  text-shadow:3px 4px 0 #e83d9a;
 }
-
-.subtitle {
-  font-size:18px;
-  color:#e8d9ff;
-  margin:12px 0;
-}
-
-.stickers {
-  font-size:35px;
-  margin:12px;
-}
-
-.pill {
-  display:inline-block;
-  padding:8px 18px;
-  border-radius:30px;
-  background:#ffffff20;
-  border:1px solid #ffffff40;
-  font-size:14px;
-  font-weight:700;
-}
-
-.stats {
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin:20px 0;
-}
-
-.stat {
+.subtitle {color:#eadcff;margin:8px 0 22px}
+.logo {font-size:48px}
+.notice {
   background:#ffffff18;
-  border:1px solid #ffffff30;
+  border:1px solid #ffffff35;
   border-radius:15px;
-  padding:8px 20px;
-  min-width:115px;
+  padding:12px;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:18px;
 }
-
-.stat strong {
-  display:block;
-  font-size:24px;
-  color:var(--yellow);
-}
-
-.stat span {
-  font-size:12px;
-  color:#e9ddff;
-}
-
-.card-wrap {
-  perspective:1000px;
-  margin:25px auto;
-  max-width:440px;
-}
-
-.game-card {
-  min-height:330px;
-  border-radius:28px;
-  padding:25px 22px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  border:4px solid white;
-  box-shadow:0 12px 0 #160d35,0 20px 45px #0005;
-  background:linear-gradient(145deg,#48c8ff,#8857ff);
-  transition:background .3s;
-}
-
-.game-card::before {
-  content:"";
-  position:absolute;
-  width:220px;
-  height:220px;
-  border:25px solid #ffffff20;
-  border-radius:50%;
-  top:-120px;
-  right:-90px;
-  pointer-events:none;
-}
-
-.game-card.flip {
-  animation:flip .45s ease;
-}
-
-@keyframes flip {
-  0% { transform:rotateY(0) scale(1); }
-  50% { transform:rotateY(90deg) scale(.9); }
-  100% { transform:rotateY(0) scale(1); }
-}
-
-.category {
-  padding:7px 17px;
-  border-radius:30px;
-  background:#ffffff30;
-  border:1px solid #ffffff70;
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:1px;
-  position:relative;
-}
-
-.card-emoji {
-  font-size:65px;
-  margin:12px 0 5px;
-  position:relative;
-}
-
-.question {
-  font-size:clamp(22px,5vw,29px);
-  font-weight:800;
-  line-height:1.35;
-  position:relative;
-  max-width:370px;
-  overflow-wrap:anywhere;
-}
-
-.english {
-  font-size:16px;
-  color:#fff0fb;
-  margin-top:12px;
-  line-height:1.4;
-  position:relative;
-}
-
-.card-number {
-  font-size:12px;
-  margin-top:18px;
-  opacity:.85;
-  position:relative;
-}
-
-.card-back { background:linear-gradient(145deg,#48c8ff,#8857ff); }
-.card-truth { background:linear-gradient(145deg,#ff69ad,#ff925e); }
-.card-dare { background:linear-gradient(145deg,#8857ff,#4b83ff); }
-.card-expose { background:linear-gradient(145deg,#ffae42,#ff5e75); }
-.card-act { background:linear-gradient(145deg,#35c9bd,#418bff); }
-.card-tongue { background:linear-gradient(145deg,#ff69a9,#9b65ff); }
-.card-rule { background:linear-gradient(145deg,#ffc84a,#ff6e73); }
-
-.buttons {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  max-width:440px;
-  margin:20px auto;
-}
-
-button {
-  font-family:inherit;
-  border:0;
-  border-radius:17px;
-  padding:14px 10px;
-  font-size:17px;
-  font-weight:800;
-  cursor:pointer;
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
-  transition:transform .15s,filter .15s;
-}
-
-button:active {
-  transform:scale(.96);
-  filter:brightness(.92);
-}
-
-button:focus-visible {
-  outline:3px solid white;
-  outline-offset:4px;
-}
-
-.draw {
-  grid-column:1/-1;
-  background:var(--yellow);
-  color:#39204e;
-  font-size:22px;
-  box-shadow:0 6px 0 #c69b36;
-}
-
-.next {
-  background:var(--blue);
-  color:#172b52;
-  box-shadow:0 5px 0 #238bb8;
-}
-
-.skip {
-  background:#ff72b4;
-  color:#4b1740;
-  box-shadow:0 5px 0 #c53e83;
-}
-
-.shuffle {
-  grid-column:1/-1;
-  background:white;
-  color:#58348e;
-  box-shadow:0 5px 0 #c9b9e7;
-}
-
-.toast {
-  min-height:28px;
-  color:var(--yellow);
-  font-weight:700;
-  font-size:15px;
-  margin:10px auto;
-}
-
 .categories {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:8px;
-  margin:24px auto 15px;
+  margin:18px 0;
 }
-
 .cat {
-  border:1px solid #ffffff35;
+  border:1px solid #ffffff50;
+  background:#ffffff18;
+  color:white;
   border-radius:30px;
-  background:#ffffff13;
-  padding:6px 12px;
+  padding:9px 13px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.cat.active {background:var(--yellow);color:#38204e}
+.card-area {
+  perspective:1000px;
+  margin:20px auto;
+  min-height:330px;
+}
+.card {
+  min-height:330px;
+  padding:28px 22px;
+  border-radius:28px;
+  border:4px solid white;
+  background:linear-gradient(145deg,#ff70b5,#8858ee 65%,#477cfa);
+  box-shadow:0 12px 0 #160c2d,0 18px 35px #0006;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transform-style:preserve-3d;
+  animation:appear .4s ease;
+}
+@keyframes appear {
+  from {opacity:0;transform:rotateY(90deg) scale(.8)}
+  to {opacity:1;transform:rotateY(0) scale(1)}
+}
+.card.empty {
+  background:linear-gradient(145deg,#49316c,#292044);
+  border-style:dashed;
+}
+.card-emoji {font-size:65px;margin-bottom:12px}
+.card-type {
+  background:#ffffff30;
+  padding:8px 18px;
+  border-radius:30px;
   font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-
-.hint {
-  font-size:14px;
-  color:#e5d8ff;
-  margin:18px auto;
-  max-width:440px;
-  line-height:1.6;
+.card-vi {
+  font-size:clamp(20px,5vw,27px);
+  font-weight:900;
+  line-height:1.45;
+  margin:23px 0 12px;
 }
-
-.footer {
-  font-size:12px;
-  color:#cdbce8;
-  margin-top:25px;
+.card-en {
+  font-size:clamp(15px,4vw,19px);
+  line-height:1.5;
+  color:#fff2fc;
 }
-
-@media(max-width:420px) {
-  main { padding:20px 13px 35px; }
-  .game-card { min-height:300px; padding:20px 15px; }
-  .stats { gap:7px; }
-  .stat { min-width:95px; padding:7px 10px; }
-  button { font-size:15px; }
-  .draw { font-size:20px; }
+.card-count {margin-top:22px;font-size:13px;color:#eee}
+.buttons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:20px 0;
+}
+button {font-family:inherit}
+.action {
+  border:0;
+  border-radius:15px;
+  padding:16px 10px;
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+  transition:transform .15s,filter .15s;
+}
+.action:active {transform:scale(.96)}
+.draw {grid-column:1/-1;background:var(--yellow);color:#38204e;font-size:20px;padding:19px}
+.next {background:var(--pink);color:white}
+.skip {background:var(--blue);color:#172447}
+.shuffle {background:#ffffff20;color:white;border:1px solid #ffffff70}
+.status {font-size:13px;color:#e6d9ff;min-height:20px}
+.footer {font-size:12px;color:#d7c5f4;margin-top:25px}
+@media(max-width:400px) {
+  .card-area,.card {min-height:310px}
+  .action {font-size:13px}
 }
 </style>
 </head>
 
 <body>
-<main>
-  <div class="topline">🎉 THE ULTIMATE PARTY CARD GAME 🎉</div>
-  <h1>DRINK<br>OR DARE</h1>
-  <div class="subtitle">Một điện thoại · Cả nhóm cùng chơi!</div>
-  <div class="stickers">🍻 😈 💖 🎲</div>
-  <div class="pill">🇻🇳 TIẾNG VIỆT · 🇬🇧 ENGLISH</div>
+<div class="container">
+  <div class="logo">🎉 🎴 🥤</div>
+  <h1>DRINK OR DARE</h1>
+  <div class="subtitle">Một nhóm bạn · Một chiếc điện thoại · Một đêm đáng nhớ!</div>
 
-  <div class="stats">
-    <div class="stat">
-      <strong id="remaining">102</strong>
-      <span>CARDS LEFT</span>
-    </div>
-    <div class="stat">
-      <strong id="played">0</strong>
-      <span>CARDS PLAYED</span>
-    </div>
+  <div class="notice">
+    👯 Tất cả mọi người cùng chơi trên một điện thoại.<br>
+    🎴 Một người rút bài, cả nhóm đọc và cùng thực hiện thử thách.<br>
+    🥤 Uống là tùy chọn — nước lọc, nước ngọt hoặc bỏ qua đều được!
   </div>
 
-  <div class="card-wrap">
-    <div class="game-card card-back" id="card">
-      <div class="category" id="category">READY TO PLAY?</div>
-      <div class="card-emoji" id="emoji">🎁</div>
-      <div class="question" id="question">Sẵn sàng chưa?</div>
-      <div class="english" id="english">Ready to have some fun?</div>
-      <div class="card-number" id="cardNumber">
-        RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD
-      </div>
-    </div>
+  <div class="categories" id="categories">
+    <button class="cat active" data-filter="ALL">🎲 Tất cả</button>
+    <button class="cat" data-filter="TRUTH">💗 Truth</button>
+    <button class="cat" data-filter="DARE">🔥 Dare</button>
+    <button class="cat" data-filter="EXPOSE">👀 Expose</button>
+    <button class="cat" data-filter="ACT">🎭 Act it out</button>
+    <button class="cat" data-filter="TONGUE">👅 Tongue twister</button>
+    <button class="cat" data-filter="RULE">⚡ Wild rule</button>
   </div>
 
-  <div class="toast" id="toast">
-    Cả nhóm ngồi lại và bắt đầu thôi! 💗
+  <div class="card-area">
+    <div class="card empty" id="gameCard">
+      <div class="card-emoji">🎴</div>
+      <div class="card-type">READY TO PLAY?</div>
+      <div class="card-vi">Ai sẽ là người đầu tiên?</div>
+      <div class="card-en">Who's ready to start?</div>
+      <div class="card-count">102 CARDS · 6 CATEGORIES</div>
+    </div>
   </div>
 
   <div class="buttons">
-    <button class="draw" id="drawBtn">🎴 RÚT BÀI · DRAW CARD</button>
-    <button class="next" id="nextBtn">➡️ BÀI TIẾP · NEXT</button>
-    <button class="skip" id="skipBtn">⏭️ BỎ QUA · SKIP</button>
-    <button class="shuffle" id="shuffleBtn">🔀 XÁO BÀI MỚI</button>
+    <button class="action draw" id="drawBtn">🎴 RÚT BÀI · DRAW CARD</button>
+    <button class="action next" id="nextBtn">➡️ LÁ TIẾP · NEXT</button>
+    <button class="action skip" id="skipBtn">⏭️ BỎ QUA · SKIP</button>
+    <button class="action shuffle" id="shuffleBtn">🔀 XÁO BỘ MỚI · SHUFFLE</button>
   </div>
 
-  <div class="categories">
-    <span class="cat">💬 Truth</span>
-    <span class="cat">🔥 Dare</span>
-    <span class="cat">👀 Expose</span>
-    <span class="cat">🎭 Act it Out</span>
-    <span class="cat">👅 Tongue Twister</span>
-    <span class="cat">⚡ Wild Rule</span>
-  </div>
-
-  <div class="hint">
-    📱 Một người giữ điện thoại và rút bài cho cả nhóm cùng chơi.
-    <br>
-    Không muốn uống? Chọn nước lọc, nước ngọt hoặc bỏ qua nhé!
-  </div>
-
-  <div class="footer">
-    MADE FOR FRIENDS, LAUGHTER & CHAOTIC MEMORIES 💜
-  </div>
-</main>
+  <div class="status" id="status">Sẵn sàng chưa? Let's play! 🎉</div>
+  <div class="footer">DRINK OR DARE · PLAY TOGETHER · HAVE FUN 💜</div>
+</div>
 
 <script>
 "use strict";
 
-/* =========================
-   CARD DATABASE: 102 CARDS
-========================= */
-
 const rawCards = [
-["truth","💬","Bạn đã từng nói dối để trốn một buổi hẹn chưa?","Have you ever lied to get out of a date?"],
-["truth","💬","Ai trong nhóm hiểu bạn nhất?","Who in this group understands you best?"],
-["truth","💬","Điều xấu hổ nhất bạn từng làm trước mặt crush?","What's your most embarrassing moment in front of a crush?"],
-["truth","💬","Bạn đã từng thích người yêu cũ của bạn mình chưa?","Have you ever liked your friend's ex?"],
-["truth","💬","Bạn thường stalk ai trên mạng xã hội nhất?","Who do you stalk most on social media?"],
-["truth","💬","Bạn đã từng giả vờ bận để không gặp ai chưa?","Have you pretended to be busy to avoid someone?"],
-["truth","💬","Kỷ niệm nào khiến bạn muốn biến mất ngay lập tức?","What memory makes you want to disappear?"],
-["truth","💬","Bạn có bí mật nào chưa từng kể với nhóm?","What's a secret you've never told this group?"],
-["truth","💬","Ai là người bạn muốn đi du lịch cùng nhất ở đây?","Who here would you most like to travel with?"],
-["truth","💬","Bạn đã từng nhắn tin rồi xóa ngay vì hối hận chưa?","Have you ever sent a message and instantly regretted it?"],
-["truth","💬","Bạn có từng ghen nhưng giả vờ không không?","Have you ever been jealous but pretended not to be?"],
-["truth","💬","Điều gì khiến bạn dễ rung động nhất?","What makes you catch feelings easily?"],
-["truth","💬","Bạn đã từng có một nickname rất kỳ cục chưa?","Have you ever had a really weird nickname?"],
-["truth","💬","Nếu được đổi cuộc sống với một người ở đây, bạn chọn ai?","Whose life here would you swap with?"],
-["truth","💬","Bạn có từng đọc trộm tin nhắn của ai chưa?","Have you ever secretly read someone's messages?"],
-["truth","💬","Ai trong nhóm có gu ăn mặc đẹp nhất?","Who has the best fashion sense here?"],
-["truth","💬","Bạn sợ điều gì nhất nhưng ít khi nói ra?","What's a fear you rarely talk about?"],
-["truth","💬","Bạn đã từng thích hai người cùng lúc chưa?","Have you ever liked two people at once?"],
-["truth","💬","Nếu được quay lại một ngày trong quá khứ, bạn chọn ngày nào?","Which day in your past would you relive?"],
-["truth","💬","Bạn có từng giả vờ hiểu chuyện gì đó không?","Have you ever pretended to understand something?"],
+/* TRUTH - 17 */
+["TRUTH","💗","Bạn đã từng nói dối để tránh đi chơi với ai chưa?","Have you ever lied to avoid hanging out with someone?"],
+["TRUTH","🤫","Bí mật ngớ ngẩn nhất bạn từng giữ là gì?","What's the silliest secret you've ever kept?"],
+["TRUTH","💕","Bạn từng thích hai người cùng một lúc chưa?","Have you ever liked two people at the same time?"],
+["TRUTH","📱","Bạn thường kiểm tra trang cá nhân của ai nhất?","Whose profile do you check most often?"],
+["TRUTH","😂","Lần xấu hổ nhất của bạn trước đám đông là gì?","What's your most embarrassing public moment?"],
+["TRUTH","💌","Bạn đã từng nhắn tin rồi hối hận ngay lập tức chưa?","Have you ever sent a text and immediately regretted it?"],
+["TRUTH","👀","Ai trong nhóm có gu người yêu giống bạn nhất?","Who here has the same taste in partners as you?"],
+["TRUTH","🥹","Điều gì khiến bạn dễ rung động nhất?","What makes you catch feelings easily?"],
+["TRUTH","💔","Bạn đã từng quay lại với người yêu cũ chưa?","Have you ever gone back to an ex?"],
+["TRUTH","😳","Bạn từng giả vờ biết điều gì đó nhưng thật ra không biết chưa?","Have you ever pretended to know something you didn't?"],
+["TRUTH","📸","Bức ảnh nào trong điện thoại bạn không muốn ai thấy?","Which photo on your phone would you rather nobody saw?"],
+["TRUTH","🫣","Bạn từng thích người yêu cũ của bạn mình chưa?","Have you ever liked a friend's ex?"],
+["TRUTH","💰","Nếu có một triệu đô, việc đầu tiên bạn làm là gì?","If you had a million dollars, what would you do first?"],
+["TRUTH","❤️","Bạn tin vào tình yêu từ cái nhìn đầu tiên không?","Do you believe in love at first sight?"],
+["TRUTH","🤐","Bạn từng giấu một chuyện lớn với bạn thân chưa?","Have you ever hidden something big from your best friend?"],
+["TRUTH","😈","Thói quen xấu nào bạn không muốn bỏ?","What bad habit do you refuse to give up?"],
+["TRUTH","🌙","Bạn đã từng thức trắng đêm chỉ để nói chuyện với ai chưa?","Have you ever stayed up all night just to talk to someone?"],
 
-["dare","🔥","Hãy nhảy một điệu nhảy tự do trong 15 giây!","Do a freestyle dance for 15 seconds!"],
-["dare","🔥","Nói chuyện bằng giọng em bé trong 2 lượt tiếp theo.","Talk like a baby for the next 2 rounds."],
-["dare","🔥","Tạo dáng chụp ảnh thật ngầu cùng cả nhóm.","Strike a cool photo pose with the group."],
-["dare","🔥","Hát điệp khúc một bài hát bất kỳ.","Sing the chorus of any song."],
-["dare","🔥","Đi catwalk như đang ở tuần lễ thời trang.","Do a fashion runway walk."],
-["dare","🔥","Kể một câu chuyện cười trong 20 giây.","Tell a joke in 20 seconds."],
-["dare","🔥","Giả tiếng một con vật để cả nhóm đoán.","Make an animal sound for everyone to guess."],
-["dare","🔥","Đọc câu bất kỳ bằng giọng MC truyền hình.","Read any sentence like a TV host."],
-["dare","🔥","Tạo một dáng yoga kỳ lạ trong 10 giây.","Hold a weird yoga pose for 10 seconds."],
-["dare","🔥","Nhìn một người trong nhóm và khen họ thật lòng.","Give someone in the group a genuine compliment."],
-["dare","🔥","Nhảy như robot trong 15 giây.","Dance like a robot for 15 seconds."],
-["dare","🔥","Diễn cảnh vừa trúng số độc đắc.","Act like you just won the lottery."],
-["dare","🔥","Nói bảng chữ cái ngược trong khả năng của bạn.","Say the alphabet backwards as far as you can."],
-["dare","🔥","Làm biểu cảm hài hước nhất có thể.","Make your funniest facial expression."],
-["dare","🔥","Đọc một câu thật nghiêm túc nhưng không được cười.","Read a sentence seriously without laughing."],
-["dare","🔥","Hãy tạo một slogan quảng cáo cho người bên cạnh.","Create an advertisement slogan for the person beside you."],
-["dare","🔥","Giả vờ đang gọi điện cho người nổi tiếng.","Pretend to call a celebrity."],
-["dare","🔥","Tạo dáng như ảnh bìa album nhạc.","Pose like you're on a music album cover."],
-["dare","🔥","Nói 3 lời khen cho người bên trái.","Give three compliments to the person on your left."],
-["dare","🔥","Cùng cả nhóm tạo một dáng chụp ảnh đồng bộ.","Make a synchronized group photo pose."],
+/* DARE - 17 */
+["DARE","💃","Nhảy 20 giây mà không được bật nhạc!","Dance for 20 seconds without music!"],
+["DARE","🐔","Bắt chước tiếng gà trong 15 giây!","Make chicken sounds for 15 seconds!"],
+["DARE","🎤","Hát điệp khúc một bài hát thật to!","Sing a song chorus out loud!"],
+["DARE","😂","Cười giả tạo trong 20 giây mà không được ngừng!","Fake laugh for 20 seconds without stopping!"],
+["DARE","🕺","Nhảy như robot trong 30 giây!","Dance like a robot for 30 seconds!"],
+["DARE","🐱","Bắt chước một con mèo đang đòi ăn!","Act like a hungry cat!"],
+["DARE","💬","Nói một câu thả thính với người bên cạnh!","Give the person next to you a cheesy pickup line!"],
+["DARE","🎬","Diễn cảnh thất tình như trong phim Hàn!","Act out a dramatic K-drama breakup!"],
+["DARE","🧊","Giữ biểu cảm nghiêm túc trong khi mọi người chọc cười!","Keep a straight face while everyone tries to make you laugh!"],
+["DARE","👑","Tự giới thiệu bản thân như một hoa hậu!","Introduce yourself like you're in a beauty pageant!"],
+["DARE","🐸","Nhảy như một chú ếch trong 15 giây!","Hop like a frog for 15 seconds!"],
+["DARE","📢","Nói tên mình như đang quảng cáo trên TV!","Say your name like a TV commercial!"],
+["DARE","🤳","Tạo dáng chụp ảnh thật hài trong 10 giây!","Strike the funniest photo pose for 10 seconds!"],
+["DARE","🎭","Giả vờ bạn vừa trúng số độc đắc!","Pretend you just won the lottery!"],
+["DARE","🧟","Đi bộ như zombie quanh phòng!","Walk like a zombie around the room!"],
+["DARE","🥰","Khen người bên trái ba điều thật lòng!","Give the person on your left three genuine compliments!"],
+["DARE","🗣️","Nói một câu bất kỳ bằng giọng em bé!","Say a random sentence in a baby voice!"],
 
-["expose","👀","Cả nhóm chỉ người có khả năng đến muộn nhất.","Point to who is most likely to arrive late."],
-["expose","👀","Ai có khả năng trở thành người nổi tiếng?","Who is most likely to become famous?"],
-["expose","👀","Ai trong nhóm có vẻ bí ẩn nhất?","Who seems the most mysterious?"],
-["expose","👀","Ai là người dễ cười nhất?","Who laughs the easiest?"],
-["expose","👀","Ai có khả năng tiêu tiền nhanh nhất?","Who spends money the fastest?"],
-["expose","👀","Ai có khả năng ngủ quên trong buổi tiệc?","Who is most likely to fall asleep at a party?"],
-["expose","👀","Ai là người giữ bí mật tốt nhất?","Who is the best at keeping secrets?"],
-["expose","👀","Ai có khả năng nhắn tin cho crush lúc nửa đêm?","Who might text their crush at midnight?"],
-["expose","👀","Ai là người có khiếu hài hước nhất?","Who has the best sense of humor?"],
-["expose","👀","Ai có khả năng sống sót tốt nhất trên đảo hoang?","Who would survive best on a deserted island?"],
-["expose","👀","Ai là người chụp ảnh nhiều nhất?","Who takes the most photos?"],
-["expose","👀","Ai có khả năng trở thành triệu phú đầu tiên?","Who might become a millionaire first?"],
-["expose","👀","Ai là người hay suy nghĩ quá nhiều?","Who overthinks the most?"],
-["expose","👀","Ai có khả năng đi lạc dù có Google Maps?","Who could get lost even with Google Maps?"],
-["expose","👀","Ai là người có gu âm nhạc tốt nhất?","Who has the best music taste?"],
-["expose","👀","Ai có khả năng kết bạn với người lạ nhanh nhất?","Who makes friends with strangers fastest?"],
-["expose","👀","Ai là người hay đói nhất trong nhóm?","Who gets hungry the most?"],
-["expose","👀","Ai có khả năng quên sinh nhật người khác?","Who might forget someone's birthday?"],
-["expose","👀","Ai có vẻ ngoài hiền nhưng tính cách lầy nhất?","Who looks innocent but is secretly wild?"],
-["expose","👀","Ai là người đáng tin cậy nhất khi có chuyện?","Who is the most reliable in a crisis?"],
+/* EXPOSE - 17 */
+["EXPOSE","👀","Chỉ vào người có khả năng đến trễ nhất!","Point to the person most likely to arrive late!"],
+["EXPOSE","😂","Ai trong nhóm cười nhiều nhất?","Who laughs the most in this group?"],
+["EXPOSE","📱","Ai có khả năng nhắn tin rồi xóa tin nhắn nhất?","Who is most likely to send and delete a text?"],
+["EXPOSE","💸","Ai tiêu tiền hoang phí nhất?","Who spends money the most carelessly?"],
+["EXPOSE","😴","Ai có khả năng ngủ quên trong buổi tiệc?","Who is most likely to fall asleep at the party?"],
+["EXPOSE","🤫","Ai có khả năng giữ bí mật tốt nhất?","Who is the best at keeping secrets?"],
+["EXPOSE","💃","Ai có khả năng lên sàn nhảy đầu tiên?","Who is most likely to hit the dance floor first?"],
+["EXPOSE","❤️","Ai dễ yêu nhất trong nhóm?","Who falls in love the easiest?"],
+["EXPOSE","🎭","Ai diễn giỏi nhất khi nói dối?","Who is the best at pretending or lying?"],
+["EXPOSE","🍕","Ai có thể ăn nhiều nhất?","Who could eat the most food?"],
+["EXPOSE","📸","Ai chụp ảnh selfie nhiều nhất?","Who takes the most selfies?"],
+["EXPOSE","🔥","Ai có tính cách táo bạo nhất?","Who has the boldest personality?"],
+["EXPOSE","🫣","Ai có khả năng stalk người yêu cũ nhất?","Who is most likely to stalk an ex?"],
+["EXPOSE","🧠","Ai đưa ra lời khuyên tình cảm tốt nhất?","Who gives the best relationship advice?"],
+["EXPOSE","🎤","Ai có khả năng trở thành người nổi tiếng?","Who is most likely to become famous?"],
+["EXPOSE","🏝️","Ai sống sót tốt nhất nếu bị mắc kẹt trên đảo hoang?","Who would survive best on a deserted island?"],
+["EXPOSE","🤝","Ai là người đáng tin cậy nhất trong nhóm?","Who is the most trustworthy person here?"],
 
-["act","🎭","Diễn tả một người đang cố tỏ ra bình tĩnh khi gặp crush.","Act like someone trying to stay calm around their crush."],
-["act","🎭","Diễn cảnh bạn vừa phát hiện điện thoại hết pin.","Act like you just discovered your phone is dead."],
-["act","🎭","Diễn một người đang cố giấu món ăn ngon.","Act like someone hiding delicious food."],
-["act","🎭","Diễn cảnh bạn vừa nghe được một tin cực sốc.","Act like you just heard shocking news."],
-["act","🎭","Diễn một người đang tìm điện thoại trong khi cầm nó.","Act like you're looking for your phone while holding it."],
-["act","🎭","Diễn cảnh bạn bị muỗi đốt liên tục.","Act like mosquitoes keep biting you."],
-["act","🎭","Diễn một người đang cố chụp ảnh đẹp 100 lần.","Act like someone taking 100 photos for the perfect shot."],
-["act","🎭","Diễn cảnh bạn gặp người yêu cũ ở siêu thị.","Act like you bumped into your ex at the supermarket."],
-["act","🎭","Diễn một người đang ăn đồ cay nhưng không muốn thừa nhận.","Act like you're eating spicy food but won't admit it."],
-["act","🎭","Diễn cảnh bạn đang cố nhịn cười trong lớp.","Act like you're trying not to laugh in class."],
-["act","🎭","Diễn một người vừa thức dậy sau 15 tiếng ngủ.","Act like someone waking up after 15 hours of sleep."],
-["act","🎭","Diễn cảnh bạn đang cố bán một món đồ vô dụng.","Act like you're selling a completely useless product."],
-["act","🎭","Diễn một người đang xem tin nhắn nhưng không biết trả lời gì.","Act like someone who doesn't know how to reply to a text."],
-["act","🎭","Diễn cảnh bạn vừa thắng một cuộc thi rất lớn.","Act like you just won a huge competition."],
-["act","🎭","Diễn một người đang cố đi nhẹ khi về nhà muộn.","Act like someone sneaking home late."],
+/* ACT IT OUT - 17 */
+["ACT","🎬","Diễn cảnh bạn vừa nhìn thấy người mình thích!","Act like you just spotted your crush!"],
+["ACT","🐍","Diễn một người đang cố nói dối!","Act like someone trying to lie!"],
+["ACT","😭","Diễn cảnh khóc vì hết đồ ăn!","Act like you're crying because the food is gone!"],
+["ACT","👻","Diễn một người nhìn thấy ma!","Act like you've just seen a ghost!"],
+["ACT","💍","Cầu hôn một chiếc ghế thật lãng mạn!","Propose to a chair romantically!"],
+["ACT","🧑‍🍳","Diễn một đầu bếp đang làm món ăn thảm họa!","Act like a chef making a disastrous meal!"],
+["ACT","🦸","Diễn một siêu anh hùng đang cứu thế giới!","Act like a superhero saving the world!"],
+["ACT","🐒","Bắt chước một con khỉ đang ăn chuối!","Act like a monkey eating a banana!"],
+["ACT","📞","Diễn cảnh gọi điện cho người yêu cũ!","Act like you're calling your ex!"],
+["ACT","👶","Diễn một em bé đang đòi đồ chơi!","Act like a baby demanding a toy!"],
+["ACT","💅","Diễn một người đang làm móng cho khách khó tính!","Act like a nail technician with a difficult customer!"],
+["ACT","🎤","Diễn một ca sĩ đang biểu diễn trước hàng nghìn người!","Act like a singer performing to thousands!"],
+["ACT","🧟","Diễn một zombie vừa tỉnh dậy!","Act like a zombie just waking up!"],
+["ACT","🐶","Diễn một chú chó nhìn thấy chủ về nhà!","Act like a dog seeing its owner come home!"],
+["ACT","🏆","Diễn cảnh nhận giải thưởng Oscar!","Act like you're accepting an Oscar!"],
+["ACT","😎","Diễn một người bước vào phòng như ngôi sao!","Act like a superstar walking into a room!"],
+["ACT","🥶","Diễn cảnh bạn đang lạnh cóng!","Act like you're freezing cold!"],
 
-["tongue","👅","Nói nhanh 3 lần: Nồi đồng nấu ốc, nồi đất nấu ếch.","Say 3 times fast: She sells seashells by the seashore."],
-["tongue","👅","Nói nhanh 3 lần: Lúa nếp là lúa nếp làng.","Say 3 times fast: Red lorry, yellow lorry."],
-["tongue","👅","Nói nhanh 3 lần: Bốn bà đi bán lợn con.","Say 3 times fast: Unique New York."],
-["tongue","👅","Nói nhanh 3 lần: Chị nhặt rau rồi luộc.","Say 3 times fast: Fresh fried fish."],
-["tongue","👅","Nói nhanh 3 lần: Con cá mòi béo để ở bếp.","Say 3 times fast: Six slippery snails slid slowly."],
-["tongue","👅","Nói nhanh 3 lần: Trời mưa lâm râm.","Say 3 times fast: Toy boat, toy boat, toy boat."],
-["tongue","👅","Nói nhanh 3 lần: Năm nàng nâng niu năm nải chuối.","Say 3 times fast: A proper copper coffee pot."],
-["tongue","👅","Nói nhanh 3 lần: Cô kia cắt cỏ bên cầu.","Say 3 times fast: Which witch wished which wish?"],
-["tongue","👅","Nói nhanh 3 lần: Lúc nào lên núi lấy nứa về làm lán.","Say 3 times fast: Irish wristwatch, Swiss wristwatch."],
-["tongue","👅","Nói nhanh 3 lần: Bé bưng bát bún bò.","Say 3 times fast: Peter Piper picked a peck of pickled peppers."],
-["tongue","👅","Nói nhanh 3 lần: Trúc xinh trúc mọc đầu đình.","Say 3 times fast: Six thick thistle sticks."],
-["tongue","👅","Nói nhanh 3 lần: Chú chuột chui qua chiếc chum.","Say 3 times fast: Four fine fresh fish for you."],
+/* TONGUE TWISTER - 17 */
+["TONGUE","👅","Nói 3 lần thật nhanh: Nồi đồng nấu ốc, nồi đất nấu ếch!","Say three times fast: She sells seashells by the seashore!"],
+["TONGUE","🐍","Nói 3 lần: Lúa nếp là lúa nếp làng!","Say three times fast: Red lorry, yellow lorry!"],
+["TONGUE","😂","Nói 3 lần: Bốn bà bán bún bò!","Say three times fast: Unique New York!"],
+["TONGUE","👄","Nói 3 lần: Con cá rô rục rịch trong rổ!","Say three times fast: A proper copper coffee pot!"],
+["TONGUE","🔥","Nói 3 lần: Chị sáu xách sáu sọt sấu!","Say three times fast: Six slippery snails slid slowly!"],
+["TONGUE","🎯","Nói 3 lần: Trời mưa lâm râm!","Say three times fast: Toy boat, toy boat, toy boat!"],
+["TONGUE","🐸","Nói 3 lần: Bà ba bán bánh bò!","Say three times fast: Fresh fried fish!"],
+["TONGUE","💨","Nói 3 lần: Năm nàng nằm ngủ!","Say three times fast: Four fine fresh fish for you!"],
+["TONGUE","🤪","Nói 3 lần: Làng Láng lắm lúa!","Say three times fast: Six sticky skeletons!"],
+["TONGUE","👅","Nói 3 lần: Chú chuột chui vào chum!","Say three times fast: Which wristwatches are Swiss wristwatches?"],
+["TONGUE","🎤","Nói 3 lần: Cô cò con cõng cô còng!","Say three times fast: Truly rural!"],
+["TONGUE","😂","Nói 3 lần: Ba bà bán bắp bên bờ biển!","Say three times fast: Betty Botter bought some butter!"],
+["TONGUE","🐍","Nói 3 lần: Trâu trắng ăn cỏ trên đồi!","Say three times fast: Six thick thistle sticks!"],
+["TONGUE","⚡","Nói 3 lần: Sáng sớm sương xuống sân sau!","Say three times fast: Black background, brown background!"],
+["TONGUE","👄","Nói 3 lần: Cái kéo cắt cỏ cạnh cái cổng!","Say three times fast: Can you can a can as a canner can can a can?"],
+["TONGUE","🤯","Nói 3 lần: Lúc lắc lục bình lấp lánh!","Say three times fast: Lesser leather never weathered wetter weather better!"],
+["TONGUE","🏁","Nói 3 lần: Chanh chua chấm chút muối!","Say three times fast: Irish wristwatch, Swiss wristwatch!"],
 
-["rule","⚡","Từ giờ đến lượt tiếp theo, ai cười phải giơ hai tay.","Until your next turn, raise both hands whenever you laugh."],
-["rule","⚡","Cả nhóm cùng nói CHEERS trước khi rút lá tiếp theo.","Everyone must say CHEERS before the next card."],
-["rule","⚡","Trong 2 lượt tới, không ai được gọi tên nhau.","For the next 2 rounds, nobody can say anyone's name."],
-["rule","⚡","Mọi người phải tạo dáng trái tim trong ảnh tiếp theo.","Everyone must make a heart pose in the next photo."],
-["rule","⚡","Cả nhóm cùng chọn một bài hát và hát 10 giây.","Choose a song and sing together for 10 seconds."],
-["rule","⚡","Trong một lượt, mọi người chỉ được nói bằng câu hỏi.","For one round, everyone can only speak in questions."],
-["rule","⚡","Cả nhóm cùng làm biểu cảm ngạc nhiên trong 5 giây.","Everyone makes a shocked face for 5 seconds."],
-["rule","⚡","Người rút bài tiếp theo phải chọn một bài hát cho nhóm.","The next person drawing a card chooses a song for everyone."],
-["rule","⚡","Cả nhóm cùng kể một từ bắt đầu bằng chữ B.","Everyone says a word starting with B."],
-["rule","⚡","Trong lượt tiếp theo, cả nhóm phải nói chuyện bằng giọng thì thầm.","Everyone must whisper for the next round."],
-["rule","⚡","Cả nhóm cùng tạo dáng như một ban nhạc rock.","Everyone poses like a rock band."],
-["rule","⚡","Mọi người cùng đếm ngược từ 10 đến 1 thật nhanh.","Everyone counts down from 10 to 1 as fast as possible."],
-["rule","⚡","Cả nhóm chọn một người làm DJ cho bài hát tiếp theo.","Choose one person to be the DJ for the next song."],
-["rule","⚡","Cả nhóm cùng tạo một câu slogan cho buổi tiệc.","Create a party slogan together."],
-["rule","⚡","Mỗi người nói một điều mình thích ở buổi tiệc hôm nay.","Everyone shares one thing they like about tonight."]
+/* WILD RULE - 17 */
+["RULE","⚡","Từ giờ đến lượt tiếp theo, không ai được nói từ 'OK'!","Until the next turn, nobody can say 'OK'!"],
+["RULE","🧊","Mọi người phải nói chuyện bằng giọng thì thầm trong 2 lượt!","Everyone must whisper for the next two turns!"],
+["RULE","😂","Ai cười trước sẽ phải kể một câu chuyện hài!","The first person to laugh must tell a funny story!"],
+["RULE","👑","Cả nhóm phải gọi một người do nhóm chọn là 'Boss' trong 3 lượt!","Everyone must call a group-chosen person 'Boss' for three turns!"],
+["RULE","🤝","Tất cả cùng high-five người bên cạnh!","Everyone high-five the person next to them!"],
+["RULE","🕺","Mỗi lần có người rút bài, cả nhóm phải nhảy một cái!","Everyone must dance once whenever someone draws a card!"],
+["RULE","🐸","Trong một lượt, tất cả phải nói như ếch!","Everyone must speak like frogs for one turn!"],
+["RULE","🤫","Cả nhóm im lặng 10 giây!","Everyone must stay silent for 10 seconds!"],
+["RULE","💃","Tất cả cùng tạo dáng như chụp ảnh nhóm!","Everyone strike a group-photo pose!"],
+["RULE","🎤","Người tiếp theo phải nói bằng giọng MC!","The next person must speak like a TV host!"],
+["RULE","🧠","Cả nhóm cùng kể tên 5 loại trái cây trong 5 giây!","Everyone name five fruits together in five seconds!"],
+["RULE","❤️","Mỗi người nói một lời khen cho người bên phải!","Everyone compliments the person on their right!"],
+["RULE","🧍","Tất cả đứng lên và ngồi xuống cùng lúc!","Everyone stand up and sit down together!"],
+["RULE","🎵","Cả nhóm cùng hát một bài mà ai cũng biết!","Everyone sing a song that everybody knows!"],
+["RULE","🦆","Mọi người phải đi như vịt trong 10 giây!","Everyone must waddle like a duck for 10 seconds!"],
+["RULE","📣","Cả nhóm cùng hô 'DRINK OR DARE!' thật to!","Everyone shout 'DRINK OR DARE!' together!"],
+["RULE","🎉","Chọn một người bắt đầu màn nhảy tập thể 10 giây!","Choose someone to start a 10-second group dance!"]
 ];
 
-/* =========================
-   GAME LOGIC
-========================= */
-
-const labels = {
-  truth:"💬 TRUTH · SỰ THẬT",
-  dare:"🔥 DARE · THỬ THÁCH",
-  expose:"👀 EXPOSE · BÓC PHỐT",
-  act:"🎭 ACT IT OUT · DIỄN XUẤT",
-  tongue:"👅 TONGUE TWISTER · XOẮN LƯỠI",
-  rule:"⚡ WILD RULE · LUẬT ĐẶC BIỆT"
-};
-
-const classes = {
-  truth:"card-truth",
-  dare:"card-dare",
-  expose:"card-expose",
-  act:"card-act",
-  tongue:"card-tongue",
-  rule:"card-rule"
-};
-
-const cards = rawCards.map((c,index) => ({
+const cards = rawCards.map((item,index) => ({
   id:index,
-  type:c[0],
-  emoji:c[1],
-  vi:c[2],
-  en:c[3]
+  type:item[0],
+  emoji:item[1],
+  vi:item[2],
+  en:item[3]
 }));
 
+const labels = {
+  TRUTH:"💗 TRUTH",
+  DARE:"🔥 DARE",
+  EXPOSE:"👀 EXPOSE",
+  ACT:"🎭 ACT IT OUT",
+  TONGUE:"👅 TONGUE TWISTER",
+  RULE:"⚡ WILD RULE"
+};
+
 let deck = [];
+let currentIndex = -1;
+let currentFilter = "ALL";
 let played = 0;
-let current = null;
 
-const $ = id => document.getElementById(id);
+const gameCard = document.getElementById("gameCard");
+const statusText = document.getElementById("status");
 
-function shuffle(array) {
+function shuffleArray(array) {
   const result = [...array];
-
-  for (let i=result.length-1; i>0; i--) {
-    const j = Math.floor(Math.random()*(i+1));
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
     [result[i],result[j]] = [result[j],result[i]];
   }
-
   return result;
 }
 
-function updateStats() {
-  $("remaining").textContent = deck.length;
-  $("played").textContent = played;
+function createDeck() {
+  const selected = currentFilter === "ALL"
+    ? cards
+    : cards.filter(card => card.type === currentFilter);
+
+  deck = shuffleArray(selected);
+  currentIndex = -1;
+  played = 0;
+  showWelcome();
+  statusText.textContent = `Đã xáo ${deck.length} lá bài. Let's play! 🎉`;
 }
 
-function newDeck() {
-  deck = shuffle(cards);
-  played = 0;
-  current = null;
+function showWelcome() {
+  gameCard.className = "card empty";
+  gameCard.innerHTML = `
+    <div class="card-emoji">🎴</div>
+    <div class="card-type">READY TO PLAY?</div>
+    <div class="card-vi">Ai sẽ là người đầu tiên?</div>
+    <div class="card-en">Who's ready to start?</div>
+    <div class="card-count">${deck.length} CARDS AVAILABLE</div>
+  `;
+}
 
-  $("category").textContent = "READY TO PLAY?";
-  $("emoji").textContent = "🎁";
-  $("question").textContent = "Sẵn sàng chưa?";
-  $("english").textContent = "Ready to have some fun?";
-  $("cardNumber").textContent = "RÚT BÀI ĐỂ BẮT ĐẦU · DRAW A CARD";
-
-  $("card").className = "game-card card-back";
-  $("toast").textContent = "✨ Bộ bài mới đã được xáo!";
-
-  updateStats();
+function showCard(card) {
+  gameCard.className = "card";
+  gameCard.innerHTML = `
+    <div class="card-emoji">${card.emoji}</div>
+    <div class="card-type">${labels[card.type]}</div>
+    <div class="card-vi">${card.vi}</div>
+    <div class="card-en">${card.en}</div>
+    <div class="card-count">CARD ${played} / ${deck.length}</div>
+  `;
 }
 
 function drawCard() {
   if (deck.length === 0) {
-    $("toast").textContent = "🎉 Hết bài rồi! Hãy xáo bộ bài mới nhé!";
+    createDeck();
+  }
+
+  if (currentIndex >= deck.length - 1) {
+    statusText.textContent = "🎉 Đã hết bài! Hãy xáo bộ mới nhé!";
     return;
   }
 
-  current = deck.pop();
+  currentIndex++;
   played++;
-  showCard();
-}
-
-function showCard() {
-  if (!current) return;
-
-  const card = $("card");
-
-  card.className = "game-card";
-  void card.offsetWidth;
-  card.classList.add("flip",classes[current.type] || "card-back");
-
-  $("category").textContent = labels[current.type] || "PARTY CARD";
-  $("emoji").textContent = current.emoji;
-  $("question").textContent = current.vi;
-  $("english").textContent = current.en;
-  $("cardNumber").textContent = "CARD #" + played;
-  $("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
-
-  updateStats();
+  showCard(deck[currentIndex]);
+  statusText.textContent = `Lá ${played} / ${deck.length} · Have fun!`;
 }
 
 function nextCard() {
-  if (!current) {
-    $("toast").textContent = "🎴 Hãy rút lá bài đầu tiên nhé!";
-    return;
-  }
-
   drawCard();
 }
 
 function skipCard() {
-  if (!current) {
-    $("toast").textContent = "Hãy rút một lá bài trước nhé!";
+  if (currentIndex < 0) {
+    drawCard();
     return;
   }
 
+  statusText.textContent = "⏭️ Đã bỏ qua! Rút lá tiếp theo nhé.";
   drawCard();
 }
 
-/* =========================
-   INITIALIZE
-========================= */
+function newDeck() {
+  createDeck();
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+
+  document.querySelectorAll(".cat").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.filter === filter
+    );
+  });
+
+  createDeck();
+}
 
 function startGame() {
-  const required = [
-    "remaining","played","category","emoji",
-    "question","english","cardNumber","card","toast",
-    "drawBtn","nextBtn","skipBtn","shuffleBtn"
-  ];
+  document.getElementById("drawBtn").addEventListener("click",drawCard);
+  document.getElementById("nextBtn").addEventListener("click",nextCard);
+  document.getElementById("skipBtn").addEventListener("click",skipCard);
+  document.getElementById("shuffleBtn").addEventListener("click",newDeck);
 
-  const missing = required.filter(id => !$(id));
+  document.querySelectorAll(".cat").forEach(button => {
+    button.addEventListener("click",() => {
+      setFilter(button.dataset.filter);
+    });
+  });
 
-  if (missing.length) {
-    console.error("Game initialization failed. Missing:",missing);
-    return;
-  }
-
-  $("drawBtn").addEventListener("click",drawCard);
-  $("nextBtn").addEventListener("click",nextCard);
-  $("skipBtn").addEventListener("click",skipCard);
-  $("shuffleBtn").addEventListener("click",newDeck);
-
-  newDeck();
-
-  console.log("DRINK OR DARE ready:",cards.length,"cards");
+  createDeck();
 }
 
 startGame();
