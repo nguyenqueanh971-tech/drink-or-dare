@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drink or Dare 🎴</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  background: radial-gradient(circle at top, #49317d, #17132e 75%);
+  padding: 25px 15px;
+}
+h1 { font-size: clamp(32px, 7vw, 55px); margin: 12px 0; }
+.subtitle { color: #d8caff; margin-bottom: 25px; }
+.panel {
+  max-width: 650px;
+  margin: auto;
+  padding: 22px;
+  background: #ffffff12;
+  border: 1px solid #ffffff25;
+  border-radius: 25px;
+}
+input, button {
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 16px;
+}
+input { width: min(100%, 250px); margin: 6px; }
+button { cursor: pointer; font-weight: bold; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.primary {
+  background: linear-gradient(90deg,#ff6b9d,#ffad60);
+  color: white;
+  padding: 16px 30px;
+  box-shadow: 0 5px 20px #ff6b9d55;
+}
+.deck {
+  display: flex;
+  justify-content: center;
+  margin: 28px auto;
+  min-height: 300px;
+}
+.card {
+  width: 215px;
+  height: 300px;
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px #0006;
+  border: 4px solid #ffffffaa;
+  animation: pop .35s ease;
+}
+.card-back {
+  background: linear-gradient(145deg,#ff5e9c,#8655e8);
+  justify-content: center;
+  font-size: 65px;
+  border: 4px solid white;
+}
+.card.truth { background: linear-gradient(145deg,#ff6b8a,#e83e91); }
+.card.dare { background: linear-gradient(145deg,#7555ed,#3724a4); }
+.card.wild { background: linear-gradient(145deg,#13b9aa,#087d9b); }
+.card.rule { background: linear-gradient(145deg,#ffbd45,#f07831); }
+.card small { font-weight: bold; letter-spacing: 2px; }
+.card .emoji { font-size: 65px; }
+.card h2 { font-size: 24px; margin: 8px 0; }
+.card p { font-size: 18px; line-height: 1.5; }
+@keyframes pop {
+  from { transform: rotateY(90deg) scale(.8); opacity: 0; }
+  to { transform: rotateY(0) scale(1); opacity: 1; }
+}
+.players { color: #f5e9ff; margin: 15px 0; }
+.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.secondary { background: #ffffff20; color: white; border: 1px solid #ffffff50; }
+.hidden { display: none; }
+footer { margin-top: 25px; color: #b9acd9; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>🎴 DRINK OR DARE</h1>
+<div class="subtitle">RÚT BÀI HAY UỐNG? · PARTY CARD GAME</div>
+
+<div class="panel">
+  <div id="setup">
+    <h2>🎉 Let's play!</h2>
+    <p>Nhập tên người chơi, cách nhau bằng dấu phẩy</p>
+    <input id="names" placeholder="Ví dụ: Huy, Anh, Minh">
+    <br>
+    <button class="primary" onclick="startGame()">BẮT ĐẦU CHƠI ✨</button>
+  </div>
+
+  <div id="game" class="hidden">
+    <div class="players" id="turn"></div>
+    <div id="deck" class="deck">
+      <div class="card card-back">🎴</div>
+    </div>
+    <button id="draw" class="primary" onclick="drawCard()">RÚT BÀI 🎴</button>
+    <div id="actions" class="actions hidden" style="margin-top:15px">
+      <button class="primary" onclick="nextTurn()">XONG – NGƯỜI TIẾP THEO ➜</button>
+    </div>
+    <p id="counter">Lượt 1</p>
+    <button class="secondary" onclick="resetGame()">🔄 Chơi lại</button>
+  </div>
+</div>
+
+<footer>Play together · Laugh together · Make memories 💜</footer>
+
+<script>
+const cards = [
+  {type:"truth", label:"TRUTH", emoji:"💗", title:"NÓI THẬT!", text:"Ai là người bạn nhắn tin nhiều nhất gần đây?"},
+  {type:"truth", label:"TRUTH", emoji:"🤫", title:"BẬT MÍ ĐI!", text:"Kể một bí mật vui mà ít người biết về bạn."},
+  {type:"truth", label:"TRUTH", emoji:"💕", title:"CRUSH TIME!", text:"Bạn đã từng thích ai trong nhóm này chưa?"},
+  {type:"dare", label:"DARE", emoji:"💃", title:"NHẢY ĐI!", text:"Nhảy theo nhạc trong 20 giây!"},
+  {type:"dare", label:"DARE", emoji:"😂", title:"ĐỪNG CƯỜI!", text:"Làm mặt hài hước nhất trong 15 giây."},
+  {type:"dare", label:"DARE", emoji:"🎤", title:"SINGER!", text:"Hát một đoạn bài hát bất kỳ."},
+  {type:"wild", label:"WILD CARD", emoji:"🌟", title:"ĐỔI LƯỢT!", text:"Chọn một người chơi tiếp theo."},
+  {type:"wild", label:"WILD CARD", emoji:"🎁", title:"MAY MẮN!", text:"Bạn được quyền bỏ qua một thử thách."},
+  {type:"rule", label:"NEW RULE", emoji:"👑", title:"LUẬT MỚI!", text:"Từ giờ mọi người phải gọi nhau bằng biệt danh."},
+  {type:"rule", label:"NEW RULE", emoji:"🦄", title:"LUẬT MỚI!", text:"Ai nói từ 'không' phải tạo dáng trong 5 giây."}
+];
+let players = [], turn = 0, count = 1, deck = [];
+
+function shuffle(array) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+function startGame() {
+  players = document.getElementById("names").value
+    .split(",").map(x => x.trim()).filter(Boolean);
+  if (players.length < 2) {
+    alert("Hãy nhập ít nhất 2 người chơi nhé!");
+    return;
+  }
+  if (players.length > 15) {
+    alert("Tối đa 15 người chơi nhé!");
+    return;
+  }
+  turn = 0; count = 1; deck = shuffle(cards);
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  document.getElementById("counter").textContent = "Lượt " + count;
+  updateTurn();
+}
+function updateTurn() {
+  document.getElementById("turn").textContent =
+    "🎮 Lượt của: " + players[turn];
+  document.getElementById("deck").innerHTML =
+    '<div class="card card-back">🎴</div>';
+  document.getElementById("draw").disabled = false;
+  document.getElementById("actions").classList.add("hidden");
+}
+function drawCard() {
+  if (deck.length === 0) deck = shuffle(cards);
+  const card = deck.pop();
+  document.getElementById("deck").innerHTML = `
+    <div class="card ${card.type}">
+      <small>${card.label}</small>
+      <div class="emoji">${card.emoji}</div>
+      <h2>${card.title}</h2>
+      <p>${card.text}</p>
+      <small>DRINK OR DARE 🎴</small>
+    </div>`;
+  document.getElementById("draw").disabled = true;
+  document.getElementById("actions").classList.remove("hidden");
+}
+function nextTurn() {
+  turn = (turn + 1) % players.length;
+  count++;
+  document.getElementById("counter").textContent = "Lượt " + count;
+  updateTurn();
+}
+function resetGame() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("setup").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
