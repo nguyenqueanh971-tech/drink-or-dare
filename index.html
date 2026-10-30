@@ -332,19 +332,25 @@ function drawCard(){
   played++;
   showCard();
 }
+
 function showCard(){
-  const card=document.getElementById("card");
-  card.className="game-card";
+  const card = document.getElementById("card");
+
+  card.className = "game-card";
   void card.offsetWidth;
-  card.classList.add("flip",classes[current[0]]);
-  document.getElementById("category").textContent=labels[current[0]];
-  document.getElementById("emoji").textContent=current[1];
-  document.getElementById("question").textContent=current[2];
-  document.getElementById("english").textContent=current[3];
-  document.getElementById("cardNumber").textContent="CARD #"+played;
-  document.getElementById("toast").textContent="Cả nhóm cùng chơi nào! 💖";
+  card.classList.add("flip", classes[current.type]);
+
+  document.getElementById("category").textContent = labels[current.type];
+  document.getElementById("emoji").textContent = current.emoji;
+  document.getElementById("question").textContent = current.vi;
+  document.getElementById("english").textContent = current.en;
+  document.getElementById("cardNumber").textContent = "CARD #" + played;
+
+  document.getElementById("toast").textContent = "Cả nhóm cùng chơi nào! 💖";
+
   updateStats();
 }
+
 function nextCard(){
   drawCard();
 }
