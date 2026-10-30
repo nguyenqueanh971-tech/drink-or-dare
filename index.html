@@ -362,7 +362,9 @@ function skipCard(){
   document.getElementById("toast").textContent="Đã bỏ qua lá bài này ⏭️";
   drawCard();
 }
-cards=rawCards.map((c)=>c);
+
+cards=rawCards.map((c,i)=>({id:i,type:c[0],emoji:c[1],vi:c[2],en:c[3]}));
+
 newDeck();
 </script>
 </body>
